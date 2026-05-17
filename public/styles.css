@@ -1,0 +1,180 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #18212f;
+  background: #eef3f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 24px;
+  width: min(1160px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px;
+  align-items: start;
+}
+
+.form-panel,
+.status-panel {
+  background: #ffffff;
+  border: 1px solid #d7e0dc;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 14px 36px rgba(23, 32, 42, 0.08);
+}
+
+header p {
+  margin: 0 0 6px;
+  color: #23735f;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.full,
+form button {
+  grid-column: 1 / -1;
+}
+
+.otp-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) 130px;
+  gap: 12px;
+  align-items: end;
+}
+
+.otp-row button {
+  grid-column: auto;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #c9d5d1;
+  border-radius: 6px;
+  padding: 11px 12px;
+  font: inherit;
+  color: inherit;
+  background: #ffffff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #23735f;
+  outline: 3px solid rgba(35, 115, 95, 0.16);
+}
+
+span[data-error] {
+  min-height: 16px;
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 16px;
+  background: #23735f;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.68;
+  cursor: progress;
+}
+
+.status-panel > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+#config-button,
+#google-auth {
+  min-height: 36px;
+  background: #17202a;
+}
+
+#google-auth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0 12px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+pre {
+  min-height: 500px;
+  margin: 18px 0 0;
+  padding: 16px;
+  overflow: auto;
+  white-space: pre-wrap;
+  border-radius: 6px;
+  background: #101820;
+  color: #e8f1ef;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .layout,
+  form,
+  .otp-row {
+    grid-template-columns: 1fr;
+  }
+
+  .layout {
+    padding: 16px;
+  }
+}

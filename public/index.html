@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SimplifIQ Assessment Flow</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="layout">
+      <section class="form-panel">
+        <header>
+          <p>SimplifIQ</p>
+          <h1>Assessment Form</h1>
+        </header>
+
+        <form id="assessment-form" novalidate>
+          <label>
+            Name
+            <input name="name" autocomplete="name" required>
+            <span data-error="name"></span>
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required>
+            <span data-error="email"></span>
+          </label>
+
+          <label>
+            Phone
+            <input name="phone" autocomplete="tel">
+            <span data-error="phone"></span>
+          </label>
+
+          <label>
+            Company
+            <input name="company" required>
+            <span data-error="company"></span>
+          </label>
+
+          <label class="full">
+            Requirement
+            <textarea name="requirement" rows="7" required></textarea>
+            <span data-error="requirement"></span>
+          </label>
+
+          <div class="otp-row full">
+            <button id="send-otp" type="button">Send OTP</button>
+            <label>
+              OTP
+              <input id="otp" inputmode="numeric" autocomplete="one-time-code">
+              <span data-error="otp"></span>
+            </label>
+            <button id="verify-otp" type="button">Verify OTP</button>
+          </div>
+
+          <button type="submit">Generate report</button>
+        </form>
+      </section>
+
+      <section class="status-panel">
+        <div>
+          <h2>Result</h2>
+          <a id="google-auth" href="/auth/google">Connect Google</a>
+          <button id="config-button" type="button">Check config</button>
+        </div>
+        <pre id="output">Ready.</pre>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
