@@ -1,0 +1,56 @@
+REFLECTION — SimplifIQ Assessment
+===================================
+
+## What I Built
+
+An automated lead pipeline. Prospect fills a form, system verifies their business
+email via OTP, searches for company info, feeds it to Gemini to generate a
+personalized report, renders it as a PDF, uploads to Drive, logs to Sheets, and
+emails the report — all in one shot, no manual steps.
+
+## Why I Made Certain Choices
+
+Went with zero npm dependencies. Not to show off, just felt right for something
+this size. Node's built-in fetch and http module handle everything fine, and it
+means the codebase is easy to read top to bottom without chasing packages.
+
+Same logic for the PDF — wrote it from raw PDF spec instead of pulling in pdfkit
+or puppeteer. Took longer but I actually understand what's in the file now. The
+format is simpler than I expected once you get past the xref table.
+
+Kept all backend logic in one file (server.js). For a prototype, I find one long
+well-organized file easier to navigate than 12 small ones where you're constantly
+jumping around to understand a single request flow.
+
+The optionalStep() wrapper around Drive, Sheets, and email was something I added
+early. API calls fail for dumb reasons — wrong quota, token expired, network blip.
+I didn't want one broken step to kill the whole flow for the prospect.
+
+## Hardest Parts
+
+PDF layout. There's no layout engine when you're writing raw PDF — every coordinate
+is manual. Getting text wrapping, page breaks, and the header/footer consistent
+across different report lengths took more time than I'd like to admit.
+
+OAuth token persistence on Railway was annoying. The filesystem resets on redeploy
+so the token file disappears. For now you just reconnect via /auth/google after
+each deploy. Should be stored in an env variable or secrets manager properly.
+
+The Gemini prompt took several iterations. Generic prompts produced generic output.
+Had to be explicit about what "personalized" actually means — reference the company's
+industry, their specific requirement, surface real pain points, skip the filler.
+
+## What I'd Fix with More Time
+
+- Store OAuth tokens in encrypted env vars, not a file
+- Retry logic for API failures instead of just catching and moving on
+- An admin view to see all leads and report statuses in one place
+- Go through Google's verification so the "unverified app" warning goes away
+- Tests for the PDF generator — it's the most fragile part right now
+
+## Honest Take
+
+The part I'm least happy with is the token storage. It works for a demo but it's
+not how you'd do it in production. Everything else I'm reasonably happy with —
+the pipeline is solid, the report output is genuinely specific to each company,
+and the code is clean enough that someone else could read it without a walkthrough.
